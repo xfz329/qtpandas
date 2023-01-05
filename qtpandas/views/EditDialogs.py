@@ -13,8 +13,7 @@ from qtpandas.compat import QtCore, QtGui, Qt, Slot, Signal
 from qtpandas.models.SupportedDtypes import SupportedDtypes
 
 import numpy
-from pandas import Timestamp
-from pandas.tslib import NaTType
+import pandas 
 import warnings
 
 class DefaultValueValidator(QtGui.QValidator):
@@ -174,7 +173,7 @@ class AddAttributesDialog(QtGui.QDialog):
                 defaultValue = defaultValue.lower() in ['t', '1']
             elif dtype in SupportedDtypes.datetimeTypes():
                 defaultValue = Timestamp(defaultValue)
-                if isinstance(defaultValue, NaTType):
+                if isinstance(defaultValue, type(pandas.NaT)):
                     defaultValue = Timestamp('')
             else:
                 defaultValue = dtype.type()
